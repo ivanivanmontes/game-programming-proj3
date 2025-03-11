@@ -125,9 +125,11 @@ void Entity::update(float delta_time, Entity* collidable_entities, int collidabl
             }
         }
     }
-    
+    //TODO: do not change the velocity! only the acceleration. update m_acceleration
     // Our character moves from left to right, so they need an initial velocity
-    m_velocity.x = m_movement.x * m_speed;
+//    m_velocity.x = m_movement.x * m_speed;
+// instead we will do this:
+    m_acceleration.y = m_movement.x * m_speed;
     
     // And we add the gravity next
     m_velocity += m_acceleration * delta_time;

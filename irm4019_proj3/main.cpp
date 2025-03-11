@@ -45,7 +45,7 @@ constexpr GLint LEVEL_OF_DETAIL    = 0;
 constexpr GLint TEXTURE_BORDER     = 0;
 
 constexpr float FIXED_TIMESTEP = 1.0f / 60.0f;
-constexpr float ACC_OF_GRAVITY = -1.81f;
+constexpr float ACC_OF_GRAVITY = -0.81f;
 constexpr int   PLATFORM_COUNT = 3;
 
 // ————— STRUCTS AND ENUMS —————//
@@ -253,6 +253,12 @@ void update()
     }
 
     g_time_accumulator = delta_time;
+    glm::vec3 acceleration = g_game_state.player->get_acceleration();
+    std::cout << "Acceleration: ("
+                  << acceleration.x << ", "
+                  << acceleration.y << ", "
+                  << acceleration.z << ")" << std::endl;
+    
 }
 
 void render()
