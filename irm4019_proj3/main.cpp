@@ -45,7 +45,7 @@ constexpr GLint LEVEL_OF_DETAIL    = 0;
 constexpr GLint TEXTURE_BORDER     = 0;
 
 constexpr float FIXED_TIMESTEP = 1.0f / 60.0f;
-constexpr float ACC_OF_GRAVITY = -0.81f;
+constexpr float ACC_OF_GRAVITY = -9.81f;
 constexpr int   PLATFORM_COUNT = 3;
 
 // ————— STRUCTS AND ENUMS —————//
@@ -218,6 +218,8 @@ void process_input()
 
     if (key_state[SDL_SCANCODE_LEFT])       g_game_state.player->move_left();
     else if (key_state[SDL_SCANCODE_RIGHT]) g_game_state.player->move_right();
+    else if (key_state[SDL_SCANCODE_DOWN]) g_game_state.player->move_down();
+    else if (key_state[SDL_SCANCODE_UP]) g_game_state.player->move_up();
 
     // This makes sure that the player can't move faster diagonally
     if (glm::length(g_game_state.player->get_movement()) > 1.0f)
@@ -247,6 +249,7 @@ void update()
     while (delta_time >= FIXED_TIMESTEP)
     {
         // Notice that we're using FIXED_TIMESTEP as our delta time
+//        g_game_state.player->set_acceleration(glm::vec3(0.0f, ACC_OF_GRAVITY, 0.0f));
         g_game_state.player->update(FIXED_TIMESTEP, g_game_state.platforms,
                                     PLATFORM_COUNT);
         delta_time -= FIXED_TIMESTEP;
