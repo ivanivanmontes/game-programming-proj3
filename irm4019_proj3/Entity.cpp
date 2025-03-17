@@ -18,7 +18,7 @@ Entity::Entity()
     : m_position(0.0f), m_movement(0.0f), m_scale(1.0f, 1.0f, 0.0f), m_model_matrix(1.0f),
       m_speed(0.0f), m_animation_cols(0), m_animation_frames(0), m_animation_index(0),
       m_animation_rows(0), m_animation_indices(nullptr), m_animation_time(0.0f),
-      m_texture_id(0), m_velocity(0.0f), m_acceleration(0.0f)
+m_texture_id(0), m_velocity(0.0f), m_acceleration(0.0f), fuel(1500.0f)
 {
     // Initialize m_walking with zeros or any default value
     for (int i = 0; i < SECONDS_PER_FRAME; ++i)
@@ -34,7 +34,7 @@ Entity::Entity(GLuint texture_id, float speed, int walking[4][4], float animatio
       m_animation_frames(animation_frames), m_animation_index(animation_index),
       m_animation_rows(animation_rows), m_animation_indices(nullptr),
       m_animation_time(animation_time), m_texture_id(texture_id), m_velocity(0.0f),
-      m_acceleration(0.0f)
+m_acceleration(0.0f), fuel(1500.0f)
 {
     set_walking(walking);
 }
@@ -44,7 +44,7 @@ Entity::Entity(GLuint texture_id, float speed)
     : m_position(0.0f), m_movement(0.0f), m_scale(1.0f, 1.0f, 0.0f), m_model_matrix(1.0f),
       m_speed(speed), m_animation_cols(0), m_animation_frames(0), m_animation_index(0),
       m_animation_rows(0), m_animation_indices(nullptr), m_animation_time(0.0f),
-      m_texture_id(texture_id), m_velocity(0.0f), m_acceleration(0.0f)
+m_texture_id(texture_id), m_velocity(0.0f), m_acceleration(0.0f), fuel(1500.0f)
 {
     // Initialize m_walking with zeros or any default value
     for (int i = 0; i < SECONDS_PER_FRAME; ++i)
@@ -130,7 +130,7 @@ void Entity::update(float delta_time, Entity* collidable_entities, int collidabl
 //    m_velocity.x = m_movement.x * m_speed;
 // instead we will do this:
     m_acceleration = m_movement * m_speed;
-    m_acceleration.y += -0.81f;
+    m_acceleration.y += -0.31f;
     
     // And we add the gravity next
     m_velocity += m_acceleration * delta_time;

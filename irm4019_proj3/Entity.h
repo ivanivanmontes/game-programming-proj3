@@ -21,6 +21,7 @@ private:
     glm::mat4 m_model_matrix;
     
     float     m_speed;
+    float fuel;
 
     // ————— TEXTURES ————— //
     GLuint    m_texture_id;
@@ -62,10 +63,10 @@ public:
     void face_up()    { m_animation_indices = m_walking[UP];    }
     void face_down()  { m_animation_indices = m_walking[DOWN];  }
 
-    void move_left()  { m_movement.x = -1.0f; face_left(); }
-    void move_right() { m_movement.x = 1.0f;  face_right(); }
-    void move_up()    { m_movement.y = 1.0f;  face_up(); }
-    void move_down()  { m_movement.y = -1.0f; face_down(); }
+    void move_left()  { m_movement.x = (fuel > 0.0f ? -1.0f : 0.0f); face_left(); fuel -= (fuel > 0.0f ? 1.0f : 0.0f);}
+    void move_right() { m_movement.x = (fuel > 0.0f ? 1.0f : 0.0f);  face_right(); fuel -= (fuel > 0.0f ? 1.0f : 0.0f);}
+    void move_up()    { m_movement.y = (fuel > 0.0f ? 8.0f : 0.0f);  face_up(); fuel -= (fuel > 0.0f ? 1.0f : 0.0f); }
+    void move_down()  { m_movement.y = (fuel > 0.0f ? -1.0f : 0.0f); face_down(); fuel -= (fuel > 0.0f ? 1.0f : 0.0f);}
 
     // ————— GETTERS ————— //
     glm::vec3 const get_position()     const { return m_position; }
@@ -75,6 +76,7 @@ public:
     glm::vec3 const get_scale()        const { return m_scale; }
     GLuint    const get_texture_id()   const { return m_texture_id; }
     float     const get_speed()        const { return m_speed; }
+    float const get_fuel() const { return fuel; }
 
     // ————— SETTERS ————— //
     void const set_position(glm::vec3 new_position)     { m_position = new_position; }
@@ -89,6 +91,7 @@ public:
     void const set_animation_frames(int new_frames)     { m_animation_frames = new_frames; }
     void const set_animation_index(int new_index)       { m_animation_index = new_index; }
     void const set_animation_time(float new_time)       { m_animation_time = new_time; }
+    void const set_fuel(float new_fuel) { fuel = new_fuel; }
 
     // Setter for m_walking
     void set_walking(int walking[4][4])
