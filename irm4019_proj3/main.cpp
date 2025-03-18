@@ -50,7 +50,7 @@ constexpr GLint TEXTURE_BORDER     = 0;
 
 constexpr float FIXED_TIMESTEP = 1.0f / 60.0f;
 constexpr float ACC_OF_GRAVITY = -9.81f;
-constexpr int   PLATFORM_COUNT = 3;
+constexpr int   PLATFORM_COUNT = 20;
 
 // ————— STRUCTS AND ENUMS —————//
 enum AppStatus { RUNNING, TERMINATED };
@@ -250,10 +250,12 @@ void initialise()
 
     for (int i = 0; i < PLATFORM_COUNT; i++)
     {
+        
         g_game_state.platforms[i].set_texture_id(load_texture(PLATFORM_FILEPATH));
-        g_game_state.platforms[i].set_position(glm::vec3(i - 1.0f, -7.0f, 0.0f));
+        g_game_state.platforms[i].set_position(glm::vec3(i - 9.0f, ((i % 6 != 0) ? -7.0f : -4.0f), 0.0f));
         g_game_state.platforms[i].update(0.0f, nullptr, 0);
     }
+    
 
     // ————— GENERAL ————— //
     glEnable(GL_BLEND);
@@ -329,6 +331,7 @@ void update()
 //        g_game_state.player->set_acceleration(glm::vec3(0.0f, ACC_OF_GRAVITY, 0.0f));
         g_game_state.player->update(FIXED_TIMESTEP, g_game_state.platforms,
                                     PLATFORM_COUNT);
+
         delta_time -= FIXED_TIMESTEP;
     }
 
@@ -338,7 +341,8 @@ void update()
 //                  << acceleration.x << ", "
 //                  << acceleration.y << ", "
 //                  << acceleration.z << ")" << std::endl;
-    std::cout << "fuel: " << g_game_state.player->get_fuel() << std::endl;
+//    std::cout << "fuel: " << g_game_state.player->get_fuel() << std::endl;
+    
     
 }
 
@@ -356,6 +360,15 @@ void render()
 
     draw_text(&g_shader_program, g_font_texture_id, "fuel: " + std::to_string(g_game_state.player->get_fuel()), 0.5f, 0.05f,
                   glm::vec3(-3.5f, 2.0f, 0.0f));
+    
+    if (g_game_state.player->get_win()) {
+        draw_text(&g_shader_program, g_font_texture_id, "you win!", 0.5f, 0.05f,
+                      glm::vec3(-3.5f, -2.0f, 0.0f));
+    }
+    if (g_game_state.player->get_lose()) {
+        draw_text(&g_shader_program, g_font_texture_id, "you lose!", 0.5f, 0.05f,
+                      glm::vec3(-3.5f, -2.0f, 0.0f));
+    }
     
     // ————— GENERAL ————— //
     SDL_GL_SwapWindow(g_display_window);

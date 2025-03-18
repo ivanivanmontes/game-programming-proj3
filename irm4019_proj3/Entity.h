@@ -22,6 +22,8 @@ private:
     
     float     m_speed;
     float fuel;
+    bool win;
+    bool lose;
 
     // ————— TEXTURES ————— //
     GLuint    m_texture_id;
@@ -77,6 +79,8 @@ public:
     GLuint    const get_texture_id()   const { return m_texture_id; }
     float     const get_speed()        const { return m_speed; }
     float const get_fuel() const { return fuel; }
+    bool const get_win() const { return win;}
+    bool const get_lose() const {return lose;}
 
     // ————— SETTERS ————— //
     void const set_position(glm::vec3 new_position)     { m_position = new_position; }
@@ -92,7 +96,10 @@ public:
     void const set_animation_index(int new_index)       { m_animation_index = new_index; }
     void const set_animation_time(float new_time)       { m_animation_time = new_time; }
     void const set_fuel(float new_fuel) { fuel = new_fuel; }
-
+    
+    void const set_win(bool new_win) { win = new_win; }
+    void const set_lose(bool new_lose) {lose = new_lose;}
+ 
     // Setter for m_walking
     void set_walking(int walking[4][4])
     {
