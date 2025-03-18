@@ -1,3 +1,12 @@
+/**
+* Author: Ivan Reynoso Montes
+* Assignment: Lunar Lander
+* Date due: 2025-3-15, 11:59pm
+* I pledge that I have completed this assignment without
+* collaborating with anyone else, in conformance with the
+* NYU School of Engineering Policies and Procedures on
+* Academic Misconduct.
+**/
 // main.cpp
 #define LOG(argument) std::cout << argument << '\n'
 #define STB_IMAGE_IMPLEMENTATION
@@ -88,17 +97,12 @@ void shutdown();
 void draw_text(ShaderProgram *shader_program, GLuint font_texture_id, std::string text,
                float font_size, float spacing, glm::vec3 position)
 {
-    // Scale the size of the fontbank in the UV-plane
-    // We will use this for spacing and positioning
     float width = 1.0f / FONTBANK_SIZE;
     float height = 1.0f / FONTBANK_SIZE;
 
-    // Instead of having a single pair of arrays, we'll have a series of pairs—one for
-    // each character. Don't forget to include <vector>!
     std::vector<float> vertices;
     std::vector<float> texture_coordinates;
 
-    // For every character...
     for (int i = 0; i < text.size(); i++) {
         // 1. Get their index in the spritesheet, as well as their offset (i.e. their
         //    position relative to the whole sentence)
@@ -128,8 +132,6 @@ void draw_text(ShaderProgram *shader_program, GLuint font_texture_id, std::strin
             u_coordinate, v_coordinate + height,
         });
     }
-
-    // 4. And render all of them using the pairs
     glm::mat4 model_matrix = glm::mat4(1.0f);
     model_matrix = glm::translate(model_matrix, position);
 
@@ -225,21 +227,21 @@ void initialise()
     
     int player_walking_animation[4][4] =
     {
-        { 1, 5, 9, 13 },  // for George to move to the left,
-        { 3, 7, 11, 15 }, // for George to move to the right,
-        { 2, 6, 10, 14 }, // for George to move upwards,
-        { 0, 4, 8, 12 }   // for George to move downwards
+        { 1, 5, 9, 13 },
+        { 3, 7, 11, 15 },
+        { 2, 6, 10, 14 },
+        { 0, 4, 8, 12 }
     };
 
     g_game_state.player = new Entity(
-        player_texture_id,         // texture id
-        1.0f,                      // speed
-        player_walking_animation,  // animation index sets
-        0.0f,                      // animation time
-        4,                         // animation frame amount
-        0,                         // current animation index
-        4,                         // animation column amount
-        4                          // animation row amount
+        player_texture_id,
+        1.0f,
+        player_walking_animation,
+        0.0f,
+        4,
+        0,
+        4,
+        4
     );
 
     g_game_state.player->set_acceleration(glm::vec3(0.0f, ACC_OF_GRAVITY * 0.1, 0.0f));
@@ -251,13 +253,10 @@ void initialise()
 
     for (int i = 0; i < PLATFORM_COUNT; i++)
     {
-        
         g_game_state.platforms[i].set_texture_id(load_texture((i % 6 ==0 ? WIN_PLATFORM_FILEPATH : PLATFORM_FILEPATH)));
         g_game_state.platforms[i].set_position(glm::vec3(i - 9.0f, ((i % 6 != 0) ? -7.0f : -4.0f), 0.0f));
         g_game_state.platforms[i].update(0.0f, nullptr, 0);
     }
-    
-
     // ————— GENERAL ————— //
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -265,7 +264,6 @@ void initialise()
 
 void process_input()
 {
-    // VERY IMPORTANT: If nothing is pressed, we don't want to go anywhere
     g_game_state.player->set_movement(glm::vec3(0.0f));
 
     SDL_Event event;
@@ -301,7 +299,6 @@ void process_input()
     else if (key_state[SDL_SCANCODE_DOWN]) g_game_state.player->move_down();
     else if (key_state[SDL_SCANCODE_UP]) g_game_state.player->move_up();
 
-    // This makes sure that the player can't move faster diagonally
     if (glm::length(g_game_state.player->get_movement()) > 1.0f)
         g_game_state.player->normalise_movement();
 }
@@ -329,22 +326,11 @@ void update()
     while (delta_time >= FIXED_TIMESTEP)
     {
         // Notice that we're using FIXED_TIMESTEP as our delta time
-//        g_game_state.player->set_acceleration(glm::vec3(0.0f, ACC_OF_GRAVITY, 0.0f));
         g_game_state.player->update(FIXED_TIMESTEP, g_game_state.platforms,
                                     PLATFORM_COUNT);
-
         delta_time -= FIXED_TIMESTEP;
     }
-
     g_time_accumulator = delta_time;
-//    glm::vec3 acceleration = g_game_state.player->get_acceleration();
-//    std::cout << "Acceleration: ("
-//                  << acceleration.x << ", "
-//                  << acceleration.y << ", "
-//                  << acceleration.z << ")" << std::endl;
-//    std::cout << "fuel: " << g_game_state.player->get_fuel() << std::endl;
-    
-    
 }
 
 void render()
@@ -370,11 +356,8 @@ void render()
         draw_text(&g_shader_program, g_font_texture_id, "you lose!", 0.5f, 0.05f,
                       glm::vec3(-3.5f, -2.0f, 0.0f));
     }
-    
     // ————— GENERAL ————— //
     SDL_GL_SwapWindow(g_display_window);
-    
-    
 }
 
 void shutdown()

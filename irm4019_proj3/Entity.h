@@ -9,7 +9,7 @@ enum AnimationDirection { LEFT, RIGHT, UP, DOWN };
 class Entity
 {
 private:
-    int m_walking[4][4]; // 4x4 array for walking animations
+    int m_walking[4][4];
 
     // ————— TRANSFORMATIONS ————— //
     glm::vec3 m_movement;

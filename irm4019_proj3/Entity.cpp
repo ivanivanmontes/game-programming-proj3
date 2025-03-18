@@ -107,7 +107,6 @@ void Entity::update(float delta_time, Entity* collidable_entities, int collidabl
             if (i % 6 == 0) {
                 /// we won!
                 win = true;
-                std::cout << "Collidated: " << i << std::endl;
             }
             else {
                 lose = true;
@@ -136,10 +135,6 @@ void Entity::update(float delta_time, Entity* collidable_entities, int collidabl
             }
         }
     }
-    //TODO: do not change the velocity! only the acceleration. update m_acceleration
-    // Our character moves from left to right, so they need an initial velocity
-//    m_velocity.x = m_movement.x * m_speed;
-// instead we will do this:
     m_acceleration = m_movement * m_speed;
     m_acceleration.y += -0.31f;
     
