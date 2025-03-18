@@ -223,8 +223,6 @@ void initialise()
     
     g_font_texture_id = load_texture(FONTSHEET_FILEPATH);
     
-    
-    
     int player_walking_animation[4][4] =
     {
         { 1, 5, 9, 13 },
@@ -246,7 +244,7 @@ void initialise()
 
     g_game_state.player->set_acceleration(glm::vec3(0.0f, ACC_OF_GRAVITY * 0.1, 0.0f));
     g_game_state.player->set_position(glm::vec3(0.0f, 5.0f, 0.0f));
-    g_game_state.player->face_right();
+    g_game_state.player->face_up();
 
     // ————— PLATFORM ————— //
     g_game_state.platforms = new Entity[PLATFORM_COUNT];
