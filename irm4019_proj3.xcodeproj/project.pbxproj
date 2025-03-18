@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6D45FA832D80ADE0004D5B30 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D45FA822D80ADDF004D5B30 /* Entity.cpp */; };
-		6D45FA8F2D80B1DF004D5B30 /* platformPack_tile027.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6D45FA8E2D80B1DA004D5B30 /* platformPack_tile027.png */; };
 		6D45FA932D80B5D3004D5B30 /* george_0.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6D45FA922D80B5CF004D5B30 /* george_0.png */; };
 		6D74A0972D88E28C00AB0A5D /* YO.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6D74A0962D88E28400AB0A5D /* YO.png */; };
+		6D74A09A2D88FF6E00AB0A5D /* lose-plat.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6D74A0982D88FF5900AB0A5D /* lose-plat.png */; };
+		6D74A09B2D88FF6E00AB0A5D /* win-plat.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6D74A0992D88FF6300AB0A5D /* win-plat.png */; };
 		DBDF1B532323DE3F007CECB1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBDF1B522323DE3F007CECB1 /* main.cpp */; };
 		DBDF1B5E2323DE8D007CECB1 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBDF1B5D2323DE8D007CECB1 /* ShaderProgram.cpp */; };
 		DBDF1B612323DE9E007CECB1 /* shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBDF1B5C2323DE8D007CECB1 /* shaders */; };
@@ -28,9 +29,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				6D74A09A2D88FF6E00AB0A5D /* lose-plat.png in CopyFiles */,
+				6D74A09B2D88FF6E00AB0A5D /* win-plat.png in CopyFiles */,
 				6D74A0972D88E28C00AB0A5D /* YO.png in CopyFiles */,
 				6D45FA932D80B5D3004D5B30 /* george_0.png in CopyFiles */,
-				6D45FA8F2D80B1DF004D5B30 /* platformPack_tile027.png in CopyFiles */,
 				DBDF1B612323DE9E007CECB1 /* shaders in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,9 +42,10 @@
 /* Begin PBXFileReference section */
 		6D45FA812D80ADC8004D5B30 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		6D45FA822D80ADDF004D5B30 /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
-		6D45FA8E2D80B1DA004D5B30 /* platformPack_tile027.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = platformPack_tile027.png; sourceTree = "<group>"; };
 		6D45FA922D80B5CF004D5B30 /* george_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = george_0.png; sourceTree = "<group>"; };
 		6D74A0962D88E28400AB0A5D /* YO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YO.png; sourceTree = "<group>"; };
+		6D74A0982D88FF5900AB0A5D /* lose-plat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-plat.png"; sourceTree = "<group>"; };
+		6D74A0992D88FF6300AB0A5D /* win-plat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-plat.png"; sourceTree = "<group>"; };
 		DBDF1B4F2323DE3F007CECB1 /* SDLProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDLProject; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDF1B522323DE3F007CECB1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DBDF1B592323DE8D007CECB1 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderProgram.h; sourceTree = "<group>"; };
@@ -76,7 +79,8 @@
 		DBDF1B462323DE3F007CECB1 = {
 			isa = PBXGroup;
 			children = (
-				6D45FA8E2D80B1DA004D5B30 /* platformPack_tile027.png */,
+				6D74A0982D88FF5900AB0A5D /* lose-plat.png */,
+				6D74A0992D88FF6300AB0A5D /* win-plat.png */,
 				6D74A0962D88E28400AB0A5D /* YO.png */,
 				6D45FA922D80B5CF004D5B30 /* george_0.png */,
 				DBDF1B512323DE3F007CECB1 /* irm4019_proj3 */,

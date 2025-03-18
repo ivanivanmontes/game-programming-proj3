@@ -38,7 +38,8 @@ constexpr char V_SHADER_PATH[] = "shaders/vertex_textured.glsl",
 
 constexpr float MILLISECONDS_IN_SECOND = 1000.0;
 constexpr char  SPRITESHEET_FILEPATH[] = "george_0.png",
-                PLATFORM_FILEPATH[]    = "platformPack_tile027.png",
+                PLATFORM_FILEPATH[]    = "lose-plat.png",
+                WIN_PLATFORM_FILEPATH[] = "win-plat.png",
 FONTSHEET_FILEPATH[] = "YO.png";
 GLuint g_font_texture_id;
 
@@ -251,7 +252,7 @@ void initialise()
     for (int i = 0; i < PLATFORM_COUNT; i++)
     {
         
-        g_game_state.platforms[i].set_texture_id(load_texture(PLATFORM_FILEPATH));
+        g_game_state.platforms[i].set_texture_id(load_texture((i % 6 ==0 ? WIN_PLATFORM_FILEPATH : PLATFORM_FILEPATH)));
         g_game_state.platforms[i].set_position(glm::vec3(i - 9.0f, ((i % 6 != 0) ? -7.0f : -4.0f), 0.0f));
         g_game_state.platforms[i].update(0.0f, nullptr, 0);
     }
