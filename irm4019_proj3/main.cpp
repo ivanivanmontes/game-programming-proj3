@@ -37,10 +37,10 @@ constexpr char V_SHADER_PATH[] = "shaders/vertex_textured.glsl",
                F_SHADER_PATH[] = "shaders/fragment_textured.glsl";
 
 constexpr float MILLISECONDS_IN_SECOND = 1000.0;
-constexpr char  SPRITESHEET_FILEPATH[] = "george_0.png",
+constexpr char  SPRITESHEET_FILEPATH[] = "frame-0.png",
                 PLATFORM_FILEPATH[]    = "lose-plat.png",
                 WIN_PLATFORM_FILEPATH[] = "win-plat.png",
-FONTSHEET_FILEPATH[] = "YO.png";
+FONTSHEET_FILEPATH[] = "text.png";
 GLuint g_font_texture_id;
 
 constexpr int FONTBANK_SIZE = 16;
